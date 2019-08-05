@@ -11,7 +11,7 @@ class SaleOrder(models.Model):
 
     @api.multi
     def _limite_credito(self):
-        if self.partner_id.credit + self.amount_total > self.partner_id.credit_limit:
+        if self.partner_id.credit_limit > 0 and self.partner_id.credit + self.amount_total > self.partner_id.credit_limit:
             raise UserError(_('No puede sobrepasar el limite de credito'))
 
     @api.multi
