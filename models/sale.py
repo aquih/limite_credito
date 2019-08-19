@@ -11,7 +11,7 @@ class SaleOrder(models.Model):
 
     @api.multi
     def _limite_credito(self):
-        if self.partner_id.credit_limit > 0 and self.partner_id.credit + self.amount_total > self.partner_id.credit_limit:
+        if self.partner_id.credit_limit > 0 and self.partner_id.credit + self.amount_total > self.partner_id.credit_limit + self.partner_id.extra_financiamiento:
             raise UserError(_('No puede sobrepasar el limite de credito'))
 
     @api.multi
@@ -27,7 +27,8 @@ class SaleOrder(models.Model):
     
     @api.multi
     def action_confirm(self):
-        self._limite_credito()
-        self._facturas_vencidas()
+        if not self.user_has_groups('sales_team.group_sale_manager'):
+            self._limite_credito()
+            self._facturas_vencidas()
         super(SaleOrder, self).action_confirm()
         return True

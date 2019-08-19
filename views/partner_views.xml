@@ -2,16 +2,17 @@
 <odoo>
     <data>
 
-        <record id="limite_credito_view_partner_form" model="ir.ui.view">
-            <field name="name">limite_credito.res.partner.form</field>
+        <record id="limite_credito_view_partner_property_form" model="ir.ui.view">
+            <field name="name">limite_credito.res.partner.property.form.inherit</field>
             <field name="model">res.partner</field>
-            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
+            <field name="groups_id" eval="[(6,0,[ref('sales_team.group_sale_manager')])]"/>
             <field name="arch" type="xml">
-                <data>
-                    <field name="category_id" position="after">
-                        <field name="dias_gracia"/>
-                    </field>
-                </data>
+                <field name="property_payment_term_id" position="after">
+                    <field name="credit_limit"/>
+                    <field name="dias_gracia"/>
+                    <field name="extra_financiamiento"/>
+                </field>
             </field>
         </record>
 
