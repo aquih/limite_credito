@@ -18,7 +18,6 @@
     'depends': ['base','sale'],
 
     'data': [
-        'views/sale_views.xml',
         'views/partner_views.xml',
     ],
 }
