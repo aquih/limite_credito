@@ -29,6 +29,7 @@ class SaleOrder(models.Model):
     def action_confirm(self):
         if not self.user_has_groups('sales_team.group_sale_manager'):
             self._limite_credito()
-            self._facturas_vencidas()
+            if not self.partner_id.no_facturas_vencidas:
+                self._facturas_vencidas()
         super(SaleOrder, self).action_confirm()
         return True
