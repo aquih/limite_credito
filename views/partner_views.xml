@@ -12,6 +12,7 @@
                     <field name="credit_limit"/>
                     <field name="dias_gracia"/>
                     <field name="extra_financiamiento"/>
+                    <field name="no_facturas_vencidas"/>
                 </field>
             </field>
         </record>

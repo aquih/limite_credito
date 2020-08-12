@@ -8,3 +8,5 @@ class Partner(models.Model):
 
     dias_gracia = fields.Integer('Días de gracia')
     extra_financiamiento = fields.Float(string='Extra financiamiento')
+    no_facturas_vencidas = fields.Boolean(string="No validar facturas vencidas")
+
