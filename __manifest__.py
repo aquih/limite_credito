@@ -3,8 +3,7 @@
     'name': "limite_credito",
 
     'summary': """
-        Modulo que lleva el control del limite de credito
-    """,
+        Modulo que lleva el control del limite de credito""",
 
     'description': """
         Modulo que lleva el control del limite de credito
@@ -19,8 +18,6 @@
     'depends': ['base','sale'],
 
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/sale_views.xml',
+        'views/partner_views.xml',
     ],
-
 }

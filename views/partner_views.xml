@@ -1,16 +1,21 @@
-<openerp>
-  <data>
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
 
         <record id="limite_credito_view_partner_property_form" model="ir.ui.view">
             <field name="name">limite_credito.res.partner.property.form.inherit</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="account.view_partner_property_form"/>
+            <field name="groups_id" eval="[(6,0,[ref('sales_team.group_sale_manager')])]"/>
             <field name="arch" type="xml">
-                <field name="credit" position="after">
+                <field name="property_payment_term_id" position="after">
                     <field name="credit_limit"/>
+                    <field name="dias_gracia"/>
+                    <field name="extra_financiamiento"/>
+                    <field name="no_facturas_vencidas"/>
                 </field>
             </field>
         </record>
 
-  </data>
-</openerp>
+    </data>
+</odoo>
