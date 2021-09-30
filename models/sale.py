@@ -19,7 +19,7 @@ class SaleOrder(models.Model):
             fecha_vencimiento = datetime.date(hoy.year, hoy.month, hoy.day) - datetime.timedelta(days=self.partner_id.dias_gracia)
         else:
             fecha_vencimiento = datetime.date(hoy.year, hoy.month, hoy.day) - datetime.timedelta(days=1)
-        facturas_vencidas = self.env['account.move'].search([('type', '=', 'out_invoice'), ('partner_id', '=', self.partner_id.id), ('state', '=', 'posted'), ('invoice_payment_state', '!=', 'paid'), ('invoice_date_due', '<=', fecha_vencimiento)])
+        facturas_vencidas = self.env['account.move'].search([('move_type', '=', 'out_invoice'), ('partner_id', '=', self.partner_id.id), ('state', '=', 'posted'), ('payment_state', '!=', 'paid'), ('invoice_date_due', '<=', fecha_vencimiento)])
         if facturas_vencidas:
             raise UserError(_('El cliente tiene facturas vencidas'))
     
