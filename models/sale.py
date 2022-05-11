@@ -23,7 +23,7 @@ class SaleOrder(models.Model):
             fecha_vencimiento = datetime.date(hoy.year, hoy.month, hoy.day) - datetime.timedelta(days=1)
         
         if version_info[0] == 14 or version_info[0] == 15:
-            facturas_vencidas = self.env['account.move'].search([('move_type', '=', 'out_invoice'), ('partner_id', '=', self.partner_id.id), ('state', '=', 'posted'), ('payment_state', '!=', 'paid'), ('invoice_date_due', '<=', fecha_vencimiento)])
+            facturas_vencidas = self.env['account.move'].search([('move_type', '=', 'out_invoice'), ('partner_id', '=', self.partner_id.id), ('state', '=', 'posted'), ('payment_state', '!=', 'paid'), ('payment_state', '!=', 'in_payment'), ('payment_state', '!=', 'reversed'), ('invoice_date_due', '<=', fecha_vencimiento)])
         else:
             facturas_vencidas = self.env['account.move'].search([('type', '=', 'out_invoice'), ('partner_id', '=', self.partner_id.id), ('state', '=', 'posted'), ('invoice_payment_state', '!=', 'paid'), ('invoice_date_due', '<=', fecha_vencimiento)])
             
