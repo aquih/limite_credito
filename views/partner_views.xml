@@ -6,14 +6,12 @@
             <field name="name">limite_credito.res.partner.property.form.inherit</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="account.view_partner_property_form"/>
-            <field name="groups_id" eval="[(6,0,[ref('sales_team.group_sale_manager')])]"/>
             <field name="arch" type="xml">
-                <field name="property_payment_term_id" position="after">
-                    <field name="credit_limit"/>
+                <group name="credit_limits" position="inside">
                     <field name="dias_gracia"/>
                     <field name="extra_financiamiento"/>
                     <field name="no_facturas_vencidas"/>
-                </field>
+                </group>
             </field>
         </record>
 

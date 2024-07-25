@@ -1,2 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_limite_credito_limite_credito,limite_credito.limite_credito,model_limite_credito_limite_credito,,1,0,0,0
