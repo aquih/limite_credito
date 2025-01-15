@@ -8,9 +8,9 @@
             <field name="inherit_id" ref="account.view_partner_property_form"/>
             <field name="arch" type="xml">
                 <group name="credit_limits" position="inside">
-                    <field name="dias_gracia"/>
-                    <field name="extra_financiamiento"/>
-                    <field name="no_facturas_vencidas"/>
+                    <field name="dias_gracia" groups='account.group_account_manager'/>
+                    <field name="extra_financiamiento" groups='account.group_account_manager'/>
+                    <field name="no_facturas_vencidas" groups='account.group_account_manager'/>
                 </group>
             </field>
         </record>
