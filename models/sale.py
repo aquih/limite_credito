@@ -26,7 +26,7 @@ class SaleOrder(models.Model):
             raise UserError(_('El cliente tiene facturas vencidas.'))
     
     def action_confirm(self):
-        if not self.user_has_groups('sales_team.group_sale_manager'):
+        if not self.env.user.has_group('sales_team.group_sale_manager'):
             self._limite_credito()
             if not self.partner_id.no_facturas_vencidas:
                 self._facturas_vencidas()
