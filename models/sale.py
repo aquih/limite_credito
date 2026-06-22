@@ -2,7 +2,6 @@
 
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
-from odoo.release import version_info
 
 import datetime
 import logging
@@ -11,7 +10,9 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     def _limite_credito(self):
-        if self.partner_id.credit_limit > 0 and self.partner_id.credit + self.amount_total > self.partner_id.credit_limit + self.partner_id.extra_financiamiento:
+        # Accesar credit_limit requiere permisos de facturacion que no queremos dar a usaurios normales
+        cliente_id = self.sudo().partner_id
+        if cliente_id.credit_limit > 0 and cliente_id.credit + self.amount_total > cliente_id.credit_limit + cliente_id.extra_financiamiento:
             raise UserError(_('No puede sobrepasar el límite de crédito.'))
 
     def _facturas_vencidas(self):
